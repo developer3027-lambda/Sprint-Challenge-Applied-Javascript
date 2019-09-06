@@ -2,7 +2,7 @@
 // -----------------------
 // Send an HTTP GET request to the following address: 
 // https://lambda-times-backend.herokuapp.com/articles
-// Stduy the response data you get back, closely.
+// Study the response data you get back, closely.
 // You will be creating a component for each 'article' in the list.
 // This won't be as easy as just iterating over an array though.
 // Create a function that will programmatically create the following DOM component:
@@ -22,7 +22,24 @@
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
 .then(response => {
     console.log(response);
+    //can i get the articles?
+    response.data.articles.forEach(element => {
+        console.log(element); //nope
+    });
 })
+.catch(error => {
+    console.log('data returned', error);
+});
+
+/* ok, so the object that comes back has several arrays in it. Each 
+array has the info for each article. so it is an array of arrays of 
+objects. I need to loop through the array (articles) and separate 
+it into the different arrays (['bootstrap','javascript','jquery',etc]) 
+of objects. Then I need to loop through that second array to make a 
+array to pull out the info, bootstrap ['headline','author photo',etc]
+*/
+
+// card created and installed
 const cardContainer = document.querySelector('.cards-container');
 cardContainer.append(infoCard());
 
