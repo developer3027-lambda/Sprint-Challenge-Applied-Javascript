@@ -10,11 +10,11 @@
 
 axios.get('https://lambda-times-backend.herokuapp.com/topics')
 .then(response => {
-    console.log(response);
-    response.data.topics.forEach(element => {
-        const newTab = tTab(element);
-        console.log(newTab);
-        tabs.append(tTab(newTab));
+    // console.log(response);
+    response.data.topics.forEach(response => {
+        const newTab = tTab(response);
+        // console.log(newTab);
+        tabs.appendChild(newTab);
     });
 })
 
@@ -24,7 +24,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics')
 //thoughts on making tab
 function tTab(element) {
     const tabElement = document.createElement('div');
-    tabElement.classList.add('tab');
+    tabElement.classList.add('tabs');
     tabElement.textContent = `${element}`;
 
     return tabElement;

@@ -23,25 +23,22 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
 .then(response => {
     console.log(response);
     //can i get the articles?
-    response.data.articles.forEach(element => {
-        console.log(element); //nope
-    });
+
+    let obj = response.data.articles.bootstrap[0];
+
+    console.log(Object.values(obj));
+
+        const newCard = infoCard(obj);
+        cardContainer.append(newCard);
 })
 .catch(error => {
     console.log('data returned', error);
 });
 
-/* ok, so the object that comes back has several arrays in it. Each 
-array has the info for each article. so it is an array of arrays of 
-objects. I need to loop through the array (articles) and separate 
-it into the different arrays (['bootstrap','javascript','jquery',etc]) 
-of objects. Then I need to loop through that second array to make a 
-array to pull out the info, bootstrap ['headline','author photo',etc]
-*/
 
 // card created and installed
 const cardContainer = document.querySelector('.cards-container');
-cardContainer.append(infoCard());
+
 
 function infoCard(obj) {
     const iCard = document.createElement('div');
@@ -50,7 +47,7 @@ function infoCard(obj) {
     const iHeadline = document.createElement('div');
     iHeadline.classList.add('headline');
     iCard.append(iHeadline);
-    iHeadline.textContent = `{Headline of article}`;
+    iHeadline.textContent = `${obj.headline}`;
 
     const iAuthor = document.createElement('div');
     iAuthor.classList.add('author');
@@ -62,11 +59,11 @@ function infoCard(obj) {
 
     const iImg = document.createElement('img');
     iImgBox.append(iImg);
-    iImg.src = `{url of authors image}`;
+    iImg.src = `${obj.authorPhoto}`;
 
     const iName = document.createElement('span');
     iAuthor.append(iName);
-    iName.textContent = `{authors name}`;
+    iName.textContent = `${obj.authorName}`;
 
     return iCard;
 }
