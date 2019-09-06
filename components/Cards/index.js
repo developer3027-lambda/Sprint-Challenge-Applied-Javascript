@@ -23,3 +23,33 @@ axios.get('https://lambda-times-backend.herokuapp.com/articles')
 .then(response => {
     console.log(response);
 })
+const cardContainer = document.querySelector('.cards-container');
+cardContainer.append(infoCard());
+
+function infoCard(obj) {
+    const iCard = document.createElement('div');
+    iCard.classList.add('card');
+
+    const iHeadline = document.createElement('div');
+    iHeadline.classList.add('headline');
+    iCard.append(iHeadline);
+    iHeadline.textContent = `{Headline of article}`;
+
+    const iAuthor = document.createElement('div');
+    iAuthor.classList.add('author');
+    iCard.append(iAuthor);
+
+    const iImgBox = document.createElement('div');
+    iImgBox.classList.add('img-container');
+    iAuthor.append(iImgBox);
+
+    const iImg = document.createElement('img');
+    iImgBox.append(iImg);
+    iImg.src = `{url of authors image}`;
+
+    const iName = document.createElement('span');
+    iAuthor.append(iName);
+    iName.textContent = `{authors name}`;
+
+    return iCard;
+}

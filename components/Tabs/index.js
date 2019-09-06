@@ -18,14 +18,14 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics')
     });
 })
 
- const tabs = document.querySelector('body');
+ const tabs = document.querySelector('.tabs');
  
 
 //thoughts on making tab
-function tTab(text) {
+function tTab(element) {
     const tabElement = document.createElement('div');
     tabElement.classList.add('tab');
-    tabElement.textContent = text;
+    tabElement.textContent = `${element}`;
 
     return tabElement;
 }
