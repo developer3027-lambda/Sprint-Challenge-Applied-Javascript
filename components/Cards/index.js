@@ -21,25 +21,31 @@
 
 axios.get('https://lambda-times-backend.herokuapp.com/articles')
 .then(response => {
-    console.log(response);
-    //can i get the articles?
+    // console.log(response); //see the object from axios
 
-    let obj = response.data.articles.bootstrap[0];
+    const arrayKeys = Object.keys(response.data.articles); //use object.keys method to get array of article catagories
+    const articleObjects = response.data.articles // array of objects, that holds info
 
-    console.log(Object.values(obj));
+    // console.log(arrayKeys); //see the array catagories
+    // console.log(articleObjects); //see the array of catagories and info 
 
-        const newCard = infoCard(obj);
-        cardContainer.append(newCard);
+    arrayKeys.forEach(e =>{ //cycle through article catagories ie. javascript
+        articleObjects[e].forEach(obj=>{ //cycle through the object data in those catagories, ie. the 4 articles in javascript
+            const newCard = infoCard(obj)   // invoke the card function and assign to variable, line 54
+            cardContainer.appendChild(newCard) //put the created card in the html, line51
+            // console.log(e); //what does this look like?
+        })
+    })
 })
 .catch(error => {
     console.log('data returned', error);
 });
 
 
-// card created and installed
+//grab the anchor in the index.html to insert the card
 const cardContainer = document.querySelector('.cards-container');
 
-
+//function to create the card
 function infoCard(obj) {
     const iCard = document.createElement('div');
     iCard.classList.add('card');
