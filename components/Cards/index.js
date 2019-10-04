@@ -18,36 +18,41 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
-axios.get('https://lambda-times-backend.herokuapp.com/articles')
-.then(response => {
-    // console.log('axios info', response);
-    let obj = response.data.articles;
-    for (const prop in obj) {
-        // console.log(`prop: ${prop}`, obj);
-        let cardProp = ([])
-        cardProp = prop;
-        console.log(cardProp)
-//need to cycle through the mess and get the right info to where it needs to go.
+// const articleCatagories = ['javascript', 'bootstrap', 'technology', 'jquery', 'node'];
+// articleCatagories.forEach(e => {
+    axios.get('https://lambda-times-backend.herokuapp.com/articles')
+    .then(response => {
+         obj = response.data.articles;
+        // const oneBootstrap = response.data.articles.bootstrap;
+        // console.log(one);
+        // one.forEach(e => {
+    
+        for(let key in obj) {
+            let response = obj[key];
+            // console.log(key, obj);
+            response.forEach(e => {
+                
+                newsCard(e)
+                console.log(e);
+            })
+        }
+    
+    })
 
-        
-        const cardObj = obj;
-        // console.log('catagory:',cardObj);
-        // cardProp.forEach(e => {
-        //     cardObj[e].forEach(obj => {
-        //         const newCard = newsCard(obj)
-        //         cardWrapper.appendChild(newCard)
-        //         console.log(obj)
-        //     })
-        // })
-    }
-})
-.catch((error) => {
-    console.log('from axios', error);
-})
+// .then(response => {
+//     console.log(response)
+//     const bootInfo = response.data.articles.bootstrap;
+    
+// })
+// .catch((error) => {
+//     console.log('from axios', error);
+// })
 
 const cardWrapper = document.querySelector('.cards-container');
 
-function newsCard() {
+function newsCard(e) {
+
+//obj.headline, obj.img, obj.authorName
 
     const newsCard = document.createElement('div');
     newsCard.classList.add('card');
@@ -55,7 +60,7 @@ function newsCard() {
     const newsHeadline = document.createElement('div');
     newsHeadline.classList.add('headline');
     newsCard.appendChild(newsHeadline);
-    newsHeadline.textContent='`${headline}`';
+    newsHeadline.textContent='`${e.headline}`';
 
     const newsAuthor = document.createElement('div');
     newsAuthor.classList.add('author');
@@ -67,7 +72,7 @@ function newsCard() {
 
     const newsImg = document.createElement('img');
     newsImgBox.appendChild(newsImg);
-    newsImg.src='`${authorPhoto}`';
+    newsImg.src='';
 
     const newsName = document.createElement('span');
     newsAuthor.appendChild(newsName);

@@ -10,11 +10,11 @@
 // And add it to the DOM in the .header-container component
 
 const headerWrap = document.querySelector('.header-container');
-console.log('header, out of function');
+// console.log('header, out of function');
 
 function Header() {
 
-    console.log('header, in of function');
+    // console.log('header, in of function');
 
     const timesHeader = document.createElement('div');
     timesHeader.classList.add('header');
