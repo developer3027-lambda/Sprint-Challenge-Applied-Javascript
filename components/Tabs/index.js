@@ -10,8 +10,10 @@
 
 axios.get('https://lambda-times-backend.herokuapp.com/topics')
 .then(response => {
+
     let tabInfo = ([])
     tabInfo = response.data.topics
+
     console.log(tabInfo);
 
     tabInfo.forEach(item => {
@@ -32,7 +34,6 @@ function tabs(item) {
     tabDiv.textContent = `${item}`
 
     return tabDiv
-
 }
 
 

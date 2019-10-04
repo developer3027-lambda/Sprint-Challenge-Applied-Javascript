@@ -17,3 +17,21 @@
 // </div>
 //
 // Create a card for each of the articles and add the card to the DOM.
+
+axios.get('https://lambda-times-backend.herokuapp.com/articles')
+.then(response => {
+    // console.log('axios info', response);
+    let obj = response.data.articles;
+    for (const prop in obj) {
+        console.log(`prop: ${prop}`, obj);
+    }
+})
+.catch((error) => {
+    console.log('from axios', error);
+})
+
+function newsCard() {
+
+    const newsCard = document.createElement('div');
+    const 
+}
