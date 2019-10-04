@@ -21,7 +21,7 @@ function Header() {
 
     const timesDate = document.createElement('span');
     timesDate.classList.add('date');
-    timesDate.textContent='SMARCH 28, 2019';
+    timesDate.textContent='MARCH 28, 2019';
     timesHeader.appendChild(timesDate)
 
     const timesTitle = document.createElement('h1');
