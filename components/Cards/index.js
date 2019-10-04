@@ -18,20 +18,47 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
-axios.get('https://lambda-times-backend.herokuapp.com/articles')
-.then(response => {
-    // console.log('axios info', response);
-    let obj = response.data.articles;
-    for (const prop in obj) {
-        console.log(`prop: ${prop}`, obj);
-    }
-})
-.catch((error) => {
-    console.log('from axios', error);
-})
+// axios.get('https://lambda-times-backend.herokuapp.com/articles')
+// .then(response => {
+//     // console.log('axios info', response);
+//     let obj = response.data.articles;
+//     for (const prop in obj) {
+//         console.log(`prop: ${prop}`, obj);
+//     }
+// })
+// .catch((error) => {
+//     console.log('from axios', error);
+// })
+
+const cardWrapper = document.querySelector('.cards-container');
 
 function newsCard() {
 
     const newsCard = document.createElement('div');
-    const 
+    newsCard.classList.add('card');
+
+    const newsHeadline = document.createElement('div');
+    newsHeadline.classList.add('headline');
+    newsCard.appendChild(newsHeadline);
+    newsHeadline.textContent='Today Title';
+
+    const newsAuthor = document.createElement('div');
+    newsAuthor.classList.add('author');
+    newsCard.appendChild(newsAuthor);
+
+    const newsImgBox = document.createElement('div');
+    newsImgBox.classList.add('img-container');
+    newsAuthor.appendChild(newsImgBox);
+
+    const newsImg = document.createElement('img');
+    newsImgBox.appendChild(newsImg);
+    newsImg.src='';
+
+    const newsName = document.createElement('span');
+    newsAuthor.appendChild(newsName);
+    newsName.textContent='mason roberts';
+
+    return newsCard
 }
+
+cardWrapper.appendChild(newsCard());
