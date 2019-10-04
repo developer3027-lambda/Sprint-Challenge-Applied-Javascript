@@ -18,17 +18,32 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
-// axios.get('https://lambda-times-backend.herokuapp.com/articles')
-// .then(response => {
-//     // console.log('axios info', response);
-//     let obj = response.data.articles;
-//     for (const prop in obj) {
-//         console.log(`prop: ${prop}`, obj);
-//     }
-// })
-// .catch((error) => {
-//     console.log('from axios', error);
-// })
+axios.get('https://lambda-times-backend.herokuapp.com/articles')
+.then(response => {
+    // console.log('axios info', response);
+    let obj = response.data.articles;
+    for (const prop in obj) {
+        // console.log(`prop: ${prop}`, obj);
+        let cardProp = ([])
+        cardProp = prop;
+        console.log(cardProp)
+//need to cycle through the mess and get the right info to where it needs to go.
+
+        
+        const cardObj = obj;
+        // console.log('catagory:',cardObj);
+        // cardProp.forEach(e => {
+        //     cardObj[e].forEach(obj => {
+        //         const newCard = newsCard(obj)
+        //         cardWrapper.appendChild(newCard)
+        //         console.log(obj)
+        //     })
+        // })
+    }
+})
+.catch((error) => {
+    console.log('from axios', error);
+})
 
 const cardWrapper = document.querySelector('.cards-container');
 
@@ -40,7 +55,7 @@ function newsCard() {
     const newsHeadline = document.createElement('div');
     newsHeadline.classList.add('headline');
     newsCard.appendChild(newsHeadline);
-    newsHeadline.textContent='Today Title';
+    newsHeadline.textContent='`${headline}`';
 
     const newsAuthor = document.createElement('div');
     newsAuthor.classList.add('author');
@@ -52,11 +67,11 @@ function newsCard() {
 
     const newsImg = document.createElement('img');
     newsImgBox.appendChild(newsImg);
-    newsImg.src='';
+    newsImg.src='`${authorPhoto}`';
 
     const newsName = document.createElement('span');
     newsAuthor.appendChild(newsName);
-    newsName.textContent='mason roberts';
+    newsName.textContent='`${authorName}`';
 
     return newsCard
 }

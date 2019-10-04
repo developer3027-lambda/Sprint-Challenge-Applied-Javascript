@@ -14,7 +14,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics')
     let tabInfo = ([])
     tabInfo = response.data.topics
 
-    console.log(tabInfo);
+    // console.log(tabInfo);
 
     tabInfo.forEach(item => {
         const newTab = tabs(item);
@@ -22,7 +22,7 @@ axios.get('https://lambda-times-backend.herokuapp.com/topics')
     })
 })
 .catch(function (error) {
-    console.log('error from axios:', error);
+    console.log('error from tab axios:', error);
 })
 
 const tabTopics = document.querySelector('.topics');
