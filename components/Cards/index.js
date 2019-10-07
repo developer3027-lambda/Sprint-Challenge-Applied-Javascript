@@ -18,41 +18,28 @@
 //
 // Create a card for each of the articles and add the card to the DOM.
 
-// const articleCatagories = ['javascript', 'bootstrap', 'technology', 'jquery', 'node'];
-// articleCatagories.forEach(e => {
     axios.get('https://lambda-times-backend.herokuapp.com/articles')
     .then(response => {
          obj = response.data.articles;
-        // const oneBootstrap = response.data.articles.bootstrap;
-        // console.log(one);
-        // one.forEach(e => {
+
     
         for(let key in obj) {
             let response = obj[key];
-            // console.log(key, obj);
             response.forEach(e => {
-                
-                newsCard(e)
-                console.log(e);
+                const one = newsCard(e)
+                cardWrapper.appendChild(one)
             })
         }
-    
     })
-
-// .then(response => {
-//     console.log(response)
-//     const bootInfo = response.data.articles.bootstrap;
-    
-// })
-// .catch((error) => {
-//     console.log('from axios', error);
-// })
+.catch((error) => {
+    console.log('from axios', error);
+})
 
 const cardWrapper = document.querySelector('.cards-container');
 
 function newsCard(e) {
 
-//obj.headline, obj.img, obj.authorName
+ console.log(e)
 
     const newsCard = document.createElement('div');
     newsCard.classList.add('card');
@@ -60,7 +47,7 @@ function newsCard(e) {
     const newsHeadline = document.createElement('div');
     newsHeadline.classList.add('headline');
     newsCard.appendChild(newsHeadline);
-    newsHeadline.textContent='`${e.headline}`';
+    newsHeadline.textContent=`${e.headline}`;
 
     const newsAuthor = document.createElement('div');
     newsAuthor.classList.add('author');
@@ -72,13 +59,13 @@ function newsCard(e) {
 
     const newsImg = document.createElement('img');
     newsImgBox.appendChild(newsImg);
-    newsImg.src='';
+    newsImg.src=`${e.authorPhoto}`;
 
     const newsName = document.createElement('span');
     newsAuthor.appendChild(newsName);
-    newsName.textContent='`${authorName}`';
+    newsName.textContent=`${e.authorName}`;
 
     return newsCard
 }
 
-cardWrapper.appendChild(newsCard());
+// cardWrapper.appendChild(newsCard());
